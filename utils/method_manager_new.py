@@ -5,6 +5,7 @@ from methods.baseline_new import BASELINE
 from methods.sdp_new import SDP
 from methods.der_new import DER
 from methods.ewc_new import EWCpp
+from methods.bic_new import BiasCorrection
 from methods.ours_new import Ours
 from methods.mir_new import MIR
 from methods.aser_new import ASER
@@ -43,6 +44,13 @@ def select_method(args, train_datalist, test_datalist, device):
         )
     elif args.mode == "ewc":
         method = EWCpp(
+            train_datalist=train_datalist,
+            test_datalist=test_datalist,
+            device=device,
+            **kwargs,
+        )
+    elif args.mode == "bic":
+        method = BiasCorrection(
             train_datalist=train_datalist,
             test_datalist=test_datalist,
             device=device,
